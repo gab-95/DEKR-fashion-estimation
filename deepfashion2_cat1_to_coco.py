@@ -18,7 +18,7 @@ parser.add_argument('-d',
                     '--dest',
                     help='output dir',
                     type=str,
-                    default=os.path.join('./src/data', 'processed'))
+                    default=os.path.join('./data', 'deepfashion2_cat1'))
 args = parser.parse_args()
 
 dataset = {
@@ -124,6 +124,6 @@ for file in tqdm(all_files):
                     shutil.copyfile(image_name, dest_image_name) #copy image file to other folder
 
 
-json_name = os.path.join(args.dest, 'deepfashion2_cat1_' + args.set + '.json')
+json_name = os.path.join(args.dest, person_keypoints_' + args.set + '.json')
 with open(json_name, 'w') as f:
     json.dump(dataset, f, indent=4)
