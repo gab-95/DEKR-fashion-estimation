@@ -160,20 +160,20 @@ Download and extract them under {POSE_ROOT}/data, and make them look like this:
         `-- |-- train
             |   |-- annos
             |   |   |-- 000001.json
-	    |   |   |-- 000002.json
-	    |   |   |-- ...
-	    |   |   |-- ...
+            |   |   |-- 000002.json
+            |   |   |-- ...
+            |   |   |-- ...
             |   |-- image
             |-- validation
             |   |-- annos
             |   |   |-- 000001.json
-	    |   |   |-- 000002.json
+            |   |   |-- 000002.json
             |   |-- image
      `-- |-- deepfashion2_cat1
-     	 `-- |-- annotations
-	     |   |-- person_keypoints_train2017.json
-             |   |-- person_keypoints_val2017.json
-	 `-- |-- images
+     	 `--|-- annotations
+            |   |-- person_keypoints_train2017.json
+            |   |-- person_keypoints_val2017.json
+     	 `--|-- images
 	    
 After downloading data, run `python deepfashion2_cat1_to_coco.py` for train and validation datasetset to generate coco-type annotations from deepfashion2 dataset referred to category 1 ('short sleeve top')
 
