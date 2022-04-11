@@ -242,6 +242,26 @@ python tools/valid.py \
     TEST.MATCH_HMP True
 ```
 
+#### Testing on DeepFashion2 cat_1 val2017 dataset without multi-scale test using well-trained pose model
+
+```
+python tools/valid.py \
+    --cfg experiments/deepfashion2_cat1/w32/w32_4x_reg03_bs10_512_adam_lr1e-3_coco_x140.yaml \
+    TEST.MODEL_FILE model/deepfasion2_cat1/pose_dekr_hrnetw32_coco.pth
+    RESCORE.VALID False
+```
+
+#### Testing on DeepFashion2 cat_1 val2017 dataset with multi-scale test using well-trained pose model
+
+```
+python tools/valid.py \
+    --cfg experiments/deepfashion2_cat1/w32/w32_4x_reg03_bs10_512_adam_lr1e-3_coco_x140.yaml \
+    TEST.MODEL_FILE model/deepfasion2_cat1/pose_dekr_hrnetw32_coco.pth
+    TEST.NMS_THRE 0.15 \
+    TEST.SCALE_FACTOR 0.5,1,2
+    RESCORE.VALID False
+```
+
 #### Training on COCO train2017 dataset
 
 ```
@@ -254,6 +274,12 @@ python tools/train.py \
 ```
 python tools/train.py \
     --cfg experiments/crowdpose/w32/w32_4x_reg03_bs10_512_adam_lr1e-3_crowdpose_x300.yaml \
+```
+#### Training on DeepFashion2 cat_1 train2017 dataset
+
+```
+python tools/train.py \
+    --cfg experiments/deepfashion2_cat1/w32/w32_4x_reg03_bs10_512_adam_lr1e-3_coco_x140.yaml \
 ```
 
 #### Using inference demo
@@ -272,66 +298,11 @@ python tools/inference_demo.py --cfg experiments/crowdpose/inference_demo_crowdp
 
 The above command will create a video under *output* directory and a lot of pose image under *output/pose* directory. 
 
-#### Scoring net
-We use a scoring net, consisting of two fully-connected layers (each followed by a ReLU layer), and a linear prediction layer which aims to learn the
-OKS score for the corresponding predicted pose. For this scoring net, you can directly use our well-trained model in the model/rescore folder. You can also train your scoring net using your pose estimation model by the following steps:
-
-1. Generate scoring dataset on train dataset:
-```
-python tools/valid.py \
-    --cfg experiments/coco/rescore_coco.yaml \
-    TEST.MODEL_FILE model/pose_coco/pose_dekr_hrnetw32.pth
-python tools/valid.py \
-    --cfg experiments/crowdpose/rescore_crowdpose.yaml \
-    TEST.MODEL_FILE model/pose_crowdpose/pose_dekr_hrnetw32.pth \
-```
-
-2. Train the scoring net using the scoring dataset:
-```
-python tools/train_scorenet.py \
-    --cfg experiment/coco/rescore_coco.yaml
-python tools/train_scorenet.py \
-    --cfg experiments/crowdpose/rescore_crowdpose.yaml \
-```
-
-3. Using the well-trained scoring net to improve the performance of your pose estimation model (above 0.6AP).
-```
-python tools/valid.py \
-    --cfg experiments/coco/w32/w32_4x_reg03_bs10_512_adam_lr1e-3_coco_x140.yaml \
-    TEST.MODEL_FILE model/pose_coco/pose_dekr_hrnetw32_coco.pth
-python tools/valid.py \
-    --cfg experiments/crowdpose/w32/w32_4x_reg03_bs10_512_adam_lr1e-3_crowdpose_x300.yaml \
-    TEST.MODEL_FILE model/pose_crowdpose/pose_dekr_hrnetw32_crowdpose.pth \
-```
-
 ### Acknowledge
 Our code is mainly based on [HigherHRNet](https://github.com/HRNet/HigherHRNet-Human-Pose-Estimation). 
 
-### Citation
 
-```
-@inproceedings{GengSXZW21,
-  title={Bottom-Up Human Pose Estimation Via Disentangled Keypoint Regression},
-  author={Zigang Geng, Ke Sun, Bin Xiao, Zhaoxiang Zhang, Jingdong Wang},
-  booktitle={CVPR},
-  year={2021}
-}
-
-@inproceedings{SunXLW19,
-  title={Deep High-Resolution Representation Learning for Human Pose Estimation},
-  author={Ke Sun and Bin Xiao and Dong Liu and Jingdong Wang},
-  booktitle={CVPR},
-  year={2019}
-}
-
-@article{WangSCJDZLMTWLX19,
-  title={Deep High-Resolution Representation Learning for Visual Recognition},
-  author={Jingdong Wang and Ke Sun and Tianheng Cheng and 
-          Borui Jiang and Chaorui Deng and Yang Zhao and Dong Liu and Yadong Mu and 
-          Mingkui Tan and Xinggang Wang and Wenyu Liu and Bin Xiao},
-  journal={TPAMI}
-  year={2019}
-}
-```
+### Reference
+Visit [DEKR git](https://github.com/HRNet/DEKR) for more details
 
 
