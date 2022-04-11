@@ -152,6 +152,29 @@ Download and extract them under {POSE_ROOT}/data, and make them look like this:
 After downloading data, run `python tools/crowdpose_concat_train_val.py` under `${POSE_ROOT}` to create trainval set.
 
 **For DeepFashion2 data**, please download from [DeepFashion2 dataset](https://github.com/switchablenorms/DeepFashion2/blob/master/README.md#:~:text=is%20available%20in-,DeepFashion2%20dataset,-.%20You%20need%20fill), train and validation folders. You need fill in the [form](https://github.com/switchablenorms/DeepFashion2/blob/master/README.md#:~:text=You%20need%20fill%20in%20the%20form%20to%20get%20password%20for%20unzipping%20files.%20Please%20refer%20to%20Data%20Description%20below%20for%20detailed%20information%20about%20dataset.) to get password for unzipping files. Please refer to Data Description below for detailed information about dataset.
+Download and extract them under {POSE_ROOT}/data, and make them look like this:
+
+    ${POSE_ROOT}
+    |-- data
+    `-- |-- deepfashion2
+        `-- |-- train
+            |   |-- annos
+            |   |   |-- 000001.json
+	    |   |   |-- 000002.json
+	    |   |   |-- ...
+	    |   |   |-- ...
+            |   |-- image
+            |-- validation
+            |   |-- annos
+            |   |   |-- 000001.json
+	    |   |   |-- 000002.json
+            |   |-- image
+     `-- |-- deepfashion2_cat1
+     	 `-- |-- annotations
+	     |   |-- person_keypoints_train2017.json
+             |   |-- person_keypoints_val2017.json
+	 `-- |-- images
+	    
 After downloading data, run `python deepfashion2_cat1_to_coco.py` for train and validation datasetset to generate coco-type annotations from deepfashion2 dataset referred to category 1 ('short sleeve top')
 
 ### Training and Testing
