@@ -35,7 +35,7 @@ We present a simple yet effective approach, named disentangled keypoint regressi
 ### Results on DeepFashion2 cat_1 val2017 without multi-scale test
 | Backbone | Input size | #Params | GFLOPs | AP | AP .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
 |--------------------|------------|---------|--------|-------|-------|--------|--------|--------|-------|-------|--------|--------|--------|
-| **pose_hrnet_w32** |  512x512 | 29.7M   | 45.8 | 0.406 | 0.609 | 0.453 | 0.135 | 0.411 | 0.481 | 0.661 | 0.526 | 0.217 | 0.484 |
+| **pose_hrnet_w32** |  512x512 | 29.7M   | 45.8 | 0.363 | 0.485 | 0.387 | 0.096 | 0.411 | 0.443 | 0.587 | 0.484 | 0.163 | 0.447 |
 
 ### Results on DeepFashion2 cat_1 val2017 with multi-scale test
 | Backbone | Input size | #Params | GFLOPs | AP | AP .5 | AP .75 | AP (M) | AP (L) | AR | AR .5 | AR .75 | AR (M) | AR (L) |
